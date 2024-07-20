@@ -16,6 +16,8 @@
           <img src="{{ Storage::url($product->image) }}" alt="Image" class="img-fluid">
         </div>
         <div class="col-md-6">
+          <form action="{{ route('cart.add') }}" method="post">
+          @csrf
           <h2 class="text-black">{{ $product->name }}</h2>
           <p>{{ $product->description }}</p>
           <p class="mb-4">Kích thước: {{ $product->size }}</p>
@@ -28,14 +30,18 @@
             <div class="input-group-prepend">
               <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
             </div>
-            <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+            <input type="text" class="form-control text-center" name="quantity" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
             <div class="input-group-append">
               <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
             </div>
           </div>
           </div>
-          <p><a href="#" class="buy-now btn btn-sm btn-primary">Add To Cart</a></p>
-
+          <input type="hidden" name="id" value="{{ $product->id }}">
+          <input type="hidden" name="name" value="{{ $product->name }}">
+          <input type="hidden" name="price_sale" value="{{ $product->price_sale }}">
+          <input type="hidden" name="image" value="{{ $product->image }}">
+          <p><button type="submit" class="buy-now btn btn-sm btn-primary">Thêm vào giỏ</button></p>
+          </form>
         </div>
       </div>
     </div>
