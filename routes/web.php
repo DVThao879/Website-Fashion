@@ -21,7 +21,7 @@ use App\Http\Controllers\HomeController;
 // });
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
-Route::get('detail/{slug}', [HomeController::class, 'detail'])->name('detail');
+Route::get('detail/{id}', [HomeController::class, 'detail'])->name('detail');
 Route::get('shop/{category_id?}', [HomeController::class, 'shop'])->name('shop');
 
 Route::prefix('admin')->as('admin.')->group(function(){
