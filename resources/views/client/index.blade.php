@@ -1,4 +1,4 @@
-@extends('client.layouts.master')
+@extends('client.layouts.app')
 
 @section('content')
   <div class="site-blocks-cover" style="background-image: url('{{ asset('theme/client/images/hero_1.jpg') }}');" data-aos="fade">

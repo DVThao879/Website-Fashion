@@ -18,7 +18,24 @@
         <div class="col-6 col-md-4 order-3 order-md-3 text-right">
           <div class="site-top-icons">
             <ul>
-              <li><a href="#"><span class="icon icon-person"></span></a></li>
+              <li>
+                @auth
+                      <div class="dropdown show">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          {{ Auth::user()->name }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" href="#">Thông tin tài khoản</a>
+                          @if(Auth::user()->type === 'admin')
+                          <a class="dropdown-item" href="{{ route('admin.dashboard') }}">Đăng nhập admin</a>
+                          @endif
+                          <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
+                        </div>
+                      </div>
+                @else
+                    <a href="{{ route('login') }}"><span class="icon icon-person"></span></a>
+                @endauth
+              </li>
               <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
               <li>
                 <a href="{{ route('cart.show') }}" class="site-cart">
