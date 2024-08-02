@@ -25,7 +25,4 @@
     <li class="mb-2">Danh mục: {{$product->category->name}}</li>
     <li class="mb-2">Trạng thái: {!! $product->is_active ? '<span class="">Hoạt động</span>' : '<span class="">Không hoạt động</span>' !!}</li>
 </ul>
-<table>
-
-</table>
 @endsection

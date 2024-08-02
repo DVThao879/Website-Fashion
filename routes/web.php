@@ -1,13 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\PromotionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +36,9 @@ Route::prefix('admin')->as('admin.')->middleware(['auth', 'isAdmin'])->group(fun
     })->name('dashboard');
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
+    Route::resource('banners', BannerController::class);
+    Route::resource('promotions', PromotionController::class);
+    Route::resource('orders', OrderController::class);
 });
 
 Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
@@ -43,6 +48,7 @@ Route::delete('/cart/clear', [CartController::class, 'clearCart'])->name('cart.c
 Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout')->middleware('auth');
 Route::post('/order', [CartController::class, 'placeOrder'])->name('order.place')->middleware('auth');
 Route::get('/thankyou', [CartController::class, 'thankyou'])->name('thankyou')->middleware('auth');
+
 
 Route::get('/auth/login', [LoginController::class, 'index'])->name('login');
 Route::post('/auth/login', [LoginController::class, 'login'])->name('login');

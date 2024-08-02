@@ -117,6 +117,7 @@
     <script src="https://kit.fontawesome.com/be9ed8669f.js" crossorigin="anonymous"></script>
 
     @yield('script-libs')
+    @yield('script')
 </body>
 
 </html>

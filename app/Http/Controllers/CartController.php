@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Promotion;
 
 class CartController extends Controller
 {
@@ -47,13 +48,13 @@ class CartController extends Controller
 
     public function showCart()
     {
-    $cart = session()->get('cart', []);
-    $total = 0;
-    // Tính tổng tiền
-    foreach ($cart as $item) {
-        $total += $item['price'] * $item['quantity'];
-    }
-    return view('client.cart.viewcart', compact('cart', 'total'));
+        $cart = session()->get('cart', []);
+        $total = 0;
+        // Tính tổng tiền
+        foreach ($cart as $item) {
+            $total += $item['price'] * $item['quantity'];
+        }
+        return view('client.cart.viewcart', compact('cart', 'total'));
     }
 
     public function removeCart($id)
@@ -74,7 +75,8 @@ class CartController extends Controller
         return redirect()->route('cart.show');
     }
 
-    public function checkout(){
+    public function checkout()
+    {
         // Lấy giỏ hàng từ session
         $cart = session()->get('cart', []);
         $totalAmount = 0;
@@ -86,7 +88,8 @@ class CartController extends Controller
         return view('client.cart.checkout', compact('cart', 'totalAmount'));
     }
 
-    public function thankyou(){
+    public function thankyou()
+    {
         return view('client.cart.thankyou');
     }
 
@@ -128,5 +131,4 @@ class CartController extends Controller
 
         return redirect()->route('thankyou');
     }
-
 }

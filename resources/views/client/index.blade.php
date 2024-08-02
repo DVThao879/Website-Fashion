@@ -1,7 +1,7 @@
 @extends('client.layouts.app')
 
 @section('content')
-  <div class="site-blocks-cover" style="background-image: url('{{ asset('theme/client/images/hero_1.jpg') }}');" data-aos="fade">
+  {{-- <div class="site-blocks-cover" style="background-image: url('{{ asset('theme/client/images/hero_1.jpg') }}');" data-aos="fade">
     <div class="container">
       <div class="row align-items-start align-items-md-center justify-content-end">
         <div class="col-md-5 text-center text-md-left pt-5 pt-md-0">
@@ -15,6 +15,35 @@
         </div>
       </div>
     </div>
+  </div> --}}
+
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      @foreach($banners as $index => $banner)
+        <li data-target="#carouselExampleIndicators" data-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}"></li>
+      @endforeach
+    </ol>
+    <div class="carousel-inner">
+      @foreach($banners as $index => $banner)
+        <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+            <a href="{{ $banner->link ?? '#' }}">
+            <img class="d-block w-100" src="{{ Storage::url($banner->image) }}" alt="Image">
+            </a>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>{{ $banner->title }}</h5>
+              <p>{{ $banner->description }}</p>
+            </div>
+        </div>
+      @endforeach
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
   </div>
 
   <div class="site-section site-section-sm site-blocks-1">

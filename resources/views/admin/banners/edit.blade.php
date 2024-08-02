@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('title')
-Sửa danh mục
+Sửa banner
 @endsection
 
 @section('style-libs')
@@ -19,7 +19,7 @@ Sửa danh mục
 @endsection
 
 @section('content')
-<form action="{{route('admin.categories.update', $category)}}" method="post" enctype="multipart/form-data">
+<form action="{{route('admin.banners.update', $banner)}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="row">
@@ -28,43 +28,37 @@ Sửa danh mục
                 <!-- Main product information -->
                 <a href="#collapseProductInfo" class="d-block card-header py-3" data-toggle="collapse"
                    role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                    <h6 class="m-0 font-weight-bold text-primary">Thông tin danh mục</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Thông tin banner</h6>
                 </a>
                 <!-- Card Content - Collapse -->
                 <div class="collapse show" id="collapseProductInfo">
                     <div class="card-body">
                         <div class="mb-3">
-                            <label for="name" class="form-label">Tên danh mục</label>
-                            <input type="text" class="form-control" id="name" placeholder="Nhập tên danh mục..." name="name" value="{{ $category->name }}" required>
+                            <label for="title" class="form-label">Tiêu đề</label>
+                            <input type="text" class="form-control" id="title" placeholder="Nhập tiêu đề..." name="title" value="{{ $banner->title }}" required>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <!--    gallery -->
-            <div class="card shadow mb-4">
-                <!-- Card Header - Accordion -->
-                <a href="#collapseProductGallery" class="d-block card-header py-3" data-toggle="collapse"
-                   role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                    <h6 class="m-0 font-weight-bold text-primary">Hình ảnh</h6>
-                </a>
-                <!-- Card Content - Collapse -->
-                <div class="collapse show" id="collapseProductGallery">
-                    <div class="card-body">
-                        <div class="mb-4">
-                            <h5 class="fs-14 mb-1">Thêm hình ảnh</h5>
-                            <p class="text-muted">Hình ảnh cho danh mục</p>
-                            <input type="file" class="form-control" name="image">
-                            @if(!empty($category->image))
-                                <div width="45px" height="65px">
-                                    <img src="{{ Storage::url($category->image) }}" alt="" width="100" height="100">
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Ảnh banner</label>
+                            <input type="file" class="form-control mb-2" id="image" name="image">
+                            @if(!empty($banner->image))
+                                <div width="100px" height="50px">
+                                    <img src="{{ Storage::url($banner->image) }}" alt="" width="100px" height="50px">
                                 </div>
                             @else
                                 <p class="text-danger">Chưa cập nhập ảnh!</p>
                             @endif
                         </div>
                         <div class="mb-3">
+                            <label for="link" class="form-label">Đường dẫn</label>
+                            <input type="url" class="form-control" id="link" placeholder="https://example.com" name="link" value="{{ $banner->link }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Mô tả</label>
+                            <textarea name="description" class="form-control" id="description" cols="30" rows="5" required>{{ $banner->description }}</textarea>
+                        </div>
+                        <div class="mb-3">
                             <label for="is_active" class="form-label">Trạng thái</label>
-                            <input class="form-check-input ml-2" value="1" type="checkbox" name="is_active" id="is_active" @checked($category->is_active)>
+                            <input class="form-check-input ml-2" value="1" type="checkbox" @checked($banner->is_active) name="is_active" id="is_active">
                         </div>
                     </div>
                 </div>

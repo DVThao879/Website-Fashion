@@ -34,40 +34,40 @@ Sửa sản phẩm
                 <div class="collapse show" id="collapseProductInfo">
                     <div class="card-body">
                         <div class="mb-3">
-                            <label for="productName" class="form-label">Tên sản phẩm</label>
-                            <input type="text" class="form-control" id="productName" placeholder="Nhập tên danh mục..." name="name" value="{{ $product->name }}" required>
+                            <label for="name" class="form-label">Tên sản phẩm</label>
+                            <input type="text" class="form-control" id="name" placeholder="Nhập tên danh mục..." name="name" value="{{ $product->name }}" required>
                         </div>
                         <div class="row">
                             <div class="mb-3 col-xl-6 col-lg-6">
-                                <label for="product-title-input2" class="form-label">Giá</label>
-                                <input type="number" class="form-control" id="product-title-input2" placeholder="Nhập giá..." name="price" value="{{ $product->price }}" required>
+                                <label for="price" class="form-label">Giá</label>
+                                <input type="number" class="form-control" id="price" placeholder="Nhập giá..." name="price" value="{{ $product->price }}" required>
                             </div>
                             <div class="mb-3 col-xl-6 col-lg-6">
-                                <label for="product-title-input3" class="form-label">Giá KM</label>
-                                <input type="number" class="form-control" id="product-title-input3" placeholder="Nhập giá giảm..." name="price_sale" value="{{ $product->price_sale }}" required>
+                                <label for="price_sale" class="form-label">Giá KM</label>
+                                <input type="number" class="form-control" id="price_sale" placeholder="Nhập giá giảm..." name="price_sale" value="{{ $product->price_sale }}" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-3 col-xl-6 col-lg-6">
-                                <label for="product-title-input4" class="form-label">Size (S, M, L, XL)</label>
-                                <input type="text" class="form-control" id="product-title-input4" placeholder="Nhập size..." name="size" value="{{ $product->size }}" required>
+                                <label for="size" class="form-label">Size (S, M, L, XL)</label>
+                                <input type="text" class="form-control" id="size" placeholder="Nhập size..." name="size" value="{{ $product->size }}" required>
                             </div>
                             <div class="mb-3 col-xl-6 col-lg-6">
-                                <label for="product-title-input5" class="form-label">Color (Red, Blue, Green, Black, White)</label>
-                                <input type="text" class="form-control" id="product-title-input5" placeholder="Nhập tên màu..." name="color" value="{{ $product->color }}" required>
+                                <label for="color" class="form-label">Color (Red, Blue, Green, Black, White)</label>
+                                <input type="text" class="form-control" id="color" placeholder="Nhập tên màu..." name="color" value="{{ $product->color }}" required>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="product-title-input6" class="form-label">Danh mục</label>
-                            <select name="category_id" id="product-title-input6" class="form-control">
+                            <label for="category_id" class="form-label">Danh mục</label>
+                            <select name="category_id" id="category_id" class="form-control">
                                 @foreach($categories as $id => $name)
                                     <option value="{{$id}}" @selected($id == $product->category_id)>{{$name}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="product-title-input7" class="form-label">Mô tả</label>
-                            <textarea name="description" class="form-control" id="product-title-input7" cols="30" rows="5" required>{{ $product->description }}</textarea>
+                            <label for="description" class="form-label">Mô tả</label>
+                            <textarea name="description" class="form-control" id="description" cols="30" rows="5" required>{{ $product->description }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -88,8 +88,8 @@ Sửa sản phẩm
                             <input type="file" class="form-control" name="image">
                         </div>
                         <div class="mb-3">
-                            <label for="category-checkbox" class="form-label">Trạng thái</label>
-                            <input class="form-check-input ml-2" value="1" type="checkbox" checked name="is_active" id="category-checkbox">
+                            <label for="is_active" class="form-label">Trạng thái</label>
+                            <input class="form-check-input ml-2" value="1" type="checkbox" checked name="is_active" id="is_active">
                         </div>
                     </div>
                 </div>
