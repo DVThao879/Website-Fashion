@@ -12,6 +12,11 @@
   <div class="site-section">
     <div class="container">
       <div class="row">
+        <div class="col-md-12">
+        @if(session('message'))
+        <p class="alert alert-success">{{session('message')}}</p>
+        @endif
+        </div>
         <div class="col-md-12 text-center">
           <h2 class="h3 mb-3 text-black">Đăng nhập</h2>
         </div>

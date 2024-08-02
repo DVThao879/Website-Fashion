@@ -27,7 +27,7 @@
                             <form action="{{ route('cart.remove', $item['id']) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                                <button onclick="return confirm('Bạn có muốn xóa không?')" type="submit" class="btn btn-danger btn-sm">Xóa</button>
                             </form>
                         </td>
                     </tr>
@@ -42,11 +42,15 @@
         </table>
         <div class="d-flex justify-content-center mb-3">
             <a href="{{ route('index') }}" class="btn btn-primary mr-2">Tiếp tục mua</a>
-            <a href="{{ route('checkout') }}" class="btn btn-success mr-2">Đặt hàng</a>
+            @auth
+                <a href="{{ route('checkout') }}" class="btn btn-success mr-2">Đặt hàng</a>
+            @else
+                <a href="{{ route('login') }}" class="btn btn-success mr-2">Đăng nhập để đặt hàng</a>
+            @endauth
             <form action="{{ route('cart.clear') }}" method="POST" class="text-center">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger">Xóa giỏ hàng</button>
+                <button onclick="return confirm('Bạn có muốn xóa không?')" type="submit" class="btn btn-danger">Xóa giỏ hàng</button>
             </form>
         </div>
     @else

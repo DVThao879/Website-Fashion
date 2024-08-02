@@ -13,7 +13,8 @@ class CartController extends Controller
         // Lấy dữ liệu từ request
         $productId = $request->input('id');
         $productName = $request->input('name');
-        $productPrice = $request->input('price_sale');
+        $productPrice = $request->input('price');
+        $productPriceSale = $request->input('price_sale');
         $productImage = $request->input('image');
         $productQuantity = $request->input('quantity', 1); // Nếu không có số lượng thì mặc định là 1
 
@@ -21,7 +22,7 @@ class CartController extends Controller
         $product = [
             'id' => $productId,
             'name' => $productName,
-            'price' => $productPrice,
+            'price' => $productPriceSale <= 0 ? $productPrice : $productPriceSale,
             'image' => $productImage,
             'quantity' => $productQuantity
         ];
@@ -102,17 +103,21 @@ class CartController extends Controller
 
         // Tạo đơn hàng mới
         $order = Order::create([
+            'user_id' => auth()->id(),
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'address' => $request->input('address'),
             'total' => $totalAmount,
+            'payment_method' => $request->input('payment_method'),
         ]);
 
         // Thêm sản phẩm vào đơn hàng
         foreach ($cart as $item) {
             OrderItem::create([
                 'order_id' => $order->id,
+                'product_id' => $item['id'],
                 'product_name' => $item['name'],
+                'image' => $item['image'],
                 'product_price' => $item['price'] * $item['quantity'],
                 'quantity' => $item['quantity'],
             ]);

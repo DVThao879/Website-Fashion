@@ -35,7 +35,7 @@ Sửa danh mục
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="product-title-input" class="form-label">Tên danh mục</label>
-                            <input type="text" class="form-control" id="product-title-input" placeholder="Nhập tên danh mục..." name="name" value="{{ $category->name }}">
+                            <input type="text" class="form-control" id="product-title-input" placeholder="Nhập tên danh mục..." name="name" value="{{ $category->name }}" required>
                         </div>
                     </div>
                 </div>

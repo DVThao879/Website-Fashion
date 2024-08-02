@@ -14,7 +14,7 @@
       <div class="row mb-5">
         <div class="col-md-12">
           <div class="border p-4 rounded" role="alert">
-            Returning customer? <a href="#">Click here</a> to login
+            Tiếp tục mua? <a href="{{ route('shop') }}">Bấm vào đây!</a>
           </div>
         </div>
       </div>
@@ -42,6 +42,16 @@
                 <input type="text" class="form-control" id="c_address" name="address" placeholder="Nhập địa chỉ" required>
               </div>
             </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="payment_method" id="inlineRadio1" value="1">
+              <label class="form-check-label" for="inlineRadio1">Trả tiền khi nhận hàng</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="payment_method" id="inlineRadio2" value="2">
+              <label class="form-check-label" for="inlineRadio2">Thanh toán online</label>
+            </div>
+
           </div>
         </div>
         <div class="col-md-6">

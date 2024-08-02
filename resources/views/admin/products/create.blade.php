@@ -34,26 +34,26 @@ Thêm sản phẩm
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="productName" class="form-label">Tên sản phẩm</label>
-                            <input type="text" class="form-control" id="productName" placeholder="Nhập tên danh mục..." name="name">
+                            <input type="text" class="form-control" id="productName" placeholder="Nhập tên danh mục..." name="name" required>
                         </div>
                         <div class="row">
                             <div class="mb-3 col-xl-6 col-lg-6">
                                 <label for="product-title-input2" class="form-label">Giá</label>
-                                <input type="number" class="form-control" id="product-title-input2" placeholder="Nhập giá..." name="price">
+                                <input type="number" class="form-control" id="product-title-input2" placeholder="Nhập giá..." name="price" required>
                             </div>
                             <div class="mb-3 col-xl-6 col-lg-6">
                                 <label for="product-title-input3" class="form-label">Giá KM</label>
-                                <input type="number" class="form-control" id="product-title-input3" placeholder="Nhập giá giảm..." name="price_sale">
+                                <input type="number" class="form-control" id="product-title-input3" placeholder="Nhập giá giảm..." name="price_sale" required>
                             </div>
                         </div>
                         <div class="row">
                             <div class="mb-3 col-xl-6 col-lg-6">
                                 <label for="product-title-input4" class="form-label">Size (S, M, L, XL)</label>
-                                <input type="text" class="form-control" id="product-title-input4" placeholder="Nhập size..." name="size">
+                                <input type="text" class="form-control" id="product-title-input4" placeholder="Nhập size..." name="size" required>
                             </div>
                             <div class="mb-3 col-xl-6 col-lg-6">
                                 <label for="product-title-input5" class="form-label">Color (Red, Blue, Green, Black, White)</label>
-                                <input type="text" class="form-control" id="product-title-input5" placeholder="Nhập tên màu..." name="color">
+                                <input type="text" class="form-control" id="product-title-input5" placeholder="Nhập tên màu..." name="color" required>
                             </div>
                         </div>
                         <div class="mb-3">
@@ -66,7 +66,7 @@ Thêm sản phẩm
                         </div>
                         <div class="mb-3">
                             <label for="product-title-input7" class="form-label">Mô tả</label>
-                            <textarea name="description" class="form-control" id="product-title-input7" cols="30" rows="5"></textarea>
+                            <textarea name="description" class="form-control" id="product-title-input7" cols="30" rows="5" required></textarea>
                         </div>
                     </div>
                 </div>
@@ -84,7 +84,7 @@ Thêm sản phẩm
                         <div class="mb-4">
                             <h5 class="fs-14 mb-1">Thêm hình ảnh</h5>
                             <p class="text-muted">Hình ảnh cho danh mục</p>
-                            <input type="file" class="form-control" name="image">
+                            <input type="file" class="form-control" name="image" required>
                         </div>
                         <div class="mb-3">
                             <label for="category-checkbox" class="form-label">Trạng thái</label>

@@ -24,7 +24,12 @@
           <div class="d-flex color-item align-items-center mb-4" >
             <span>Màu:</span> <span class="color d-inline-block rounded-circle ml-1 border" style="background-color: {{ $product->color }}"></span>
           </div>
+          
+          @if($product->price_sale > 0 || !empty($product->price_sale))
           <p><strong class="text-primary h4">Giá: <del>{{ number_format($product->price, 0, ",", ".") }} VND</del> {{ number_format($product->price_sale, 0, ",", ".") }} VND</strong></p>
+          @else
+          <p><strong class="text-primary h4">Giá: {{ number_format($product->price, 0, ",", ".") }} VND</strong></p>
+          @endif
           <div class="mb-5">
             <div class="input-group mb-3" style="max-width: 120px;">
             <div class="input-group-prepend">
@@ -38,6 +43,7 @@
           </div>
           <input type="hidden" name="id" value="{{ $product->id }}">
           <input type="hidden" name="name" value="{{ $product->name }}">
+          <input type="hidden" name="price" value="{{ $product->price }}">
           <input type="hidden" name="price_sale" value="{{ $product->price_sale }}">
           <input type="hidden" name="image" value="{{ $product->image }}">
           <p><button type="submit" class="buy-now btn btn-sm btn-primary">Thêm vào giỏ</button></p>

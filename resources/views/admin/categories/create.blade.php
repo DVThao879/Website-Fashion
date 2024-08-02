@@ -34,7 +34,7 @@ Thêm danh mục
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="product-title-input" class="form-label">Tên danh mục</label>
-                            <input type="text" class="form-control" id="product-title-input" placeholder="Nhập tên danh mục..." name="name">
+                            <input type="text" class="form-control" id="product-title-input" placeholder="Nhập tên danh mục..." name="name" required>
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@ Thêm danh mục
                         <div class="mb-4">
                             <h5 class="fs-14 mb-1">Thêm hình ảnh</h5>
                             <p class="text-muted">Hình ảnh cho danh mục</p>
-                            <input type="file" class="form-control" name="image">
+                            <input type="file" class="form-control" name="image" required>
                         </div>
                         <div class="mb-3">
                             <label for="category-checkbox" class="form-label">Trạng thái</label>
