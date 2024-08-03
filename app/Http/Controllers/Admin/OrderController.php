@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -68,5 +69,18 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+
+    public function gerenatePdf(Order $order)
+    {
+        $order = $order->load('items', 'user');
+        $data = [
+                'title' => "Hóa đơn chi tiết",
+                'date' => date('m/d/Y'),
+                'order' => $order
+        ];
+    
+        $pdf = Pdf::loadView('admin.orders.generate-order-pdf', $data);
+        return $pdf->download('document.pdf');
     }
 }

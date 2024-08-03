@@ -57,3 +57,5 @@ Route::get('/auth/verify/{token}', [LoginController::class, 'verify'])->name('ve
 
 Route::get('/auth/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/auth/register', [RegisterController::class, 'register'])->name('register');
+
+Route::get('gerenate/{order}', [OrderController::class, 'gerenatePdf'])->name('gerenate');

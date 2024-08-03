@@ -5,6 +5,7 @@ Chi tiết đơn hàng
 @endsection
 
 @section('content')
+<a href="{{ route('gerenate', $order) }}" target="_blank">In hóa đơn</a>
 <ul class="list-unstyled">
     <li class="mb-2">ID: {{$order->id}}</li>
     <li class="mb-2">Tài khoản: {{ $order->user->name }}</li>
