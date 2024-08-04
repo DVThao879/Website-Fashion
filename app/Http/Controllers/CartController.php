@@ -85,7 +85,14 @@ class CartController extends Controller
         foreach ($cart as $item) {
             $totalAmount += $item['price'] * $item['quantity'];
         }
-        return view('client.cart.checkout', compact('cart', 'totalAmount'));
+
+        // Tính tổng số tiền sau khi áp dụng mã giảm giá
+        $total = $totalAmount;
+        $discount = session('coupon')['discount'] ?? 0;
+        $totalDiscount = $total - $discount;
+        $finalTotal = $totalDiscount > 0 ? $totalDiscount : 0;
+
+        return view('client.cart.checkout', compact('cart', 'totalAmount', 'discount', 'finalTotal'));
     }
 
     public function thankyou()
@@ -98,11 +105,14 @@ class CartController extends Controller
         // Lấy giỏ hàng từ session
         $cart = session()->get('cart', []);
         $totalAmount = 0;
+        $discount = session('coupon')['discount'] ?? 0;
 
         // Tính tổng số tiền
         foreach ($cart as $item) {
             $totalAmount += $item['price'] * $item['quantity'];
         }
+
+        $totalAmount -= $discount;
 
         // Tạo đơn hàng mới
         $order = Order::create([
@@ -110,7 +120,7 @@ class CartController extends Controller
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'address' => $request->input('address'),
-            'total' => $totalAmount,
+            'total' => $totalAmount > 0 ? $totalAmount : 0,
             'payment_method' => $request->input('payment_method'),
         ]);
 
@@ -128,7 +138,49 @@ class CartController extends Controller
 
         // Xóa giỏ hàng
         session()->forget('cart');
+        //Xóa mã
+        session()->forget('coupon');
 
         return redirect()->route('thankyou');
+    }
+
+    public function applyCoupon(Request $request)
+    {
+        $couponCode = $request->input('coupon_code');
+        $promotion = Promotion::where('code', $couponCode)->where('is_active', 1)->first();
+
+        if ($promotion) {
+            // Kiểm tra ngày bắt đầu và kết thúc của mã giảm giá
+            $currentDate = now();
+            if ($currentDate < $promotion->start_date || $currentDate > $promotion->end_date) {
+                return back()->with('message', 'Mã giảm giá đã hết hạn hoặc chưa bắt đầu.');
+            }
+
+            $discount = 0;
+            $cart = session()->get('cart', []);
+            $totalAmount = 0;
+
+            // Tính tổng tiền giỏ hàng
+            foreach ($cart as $item) {
+                $totalAmount += $item['price'] * $item['quantity'];
+            }
+
+            // Tính toán giảm giá
+            if ($promotion->discount_percentage) {
+                $discount = $totalAmount * ($promotion->discount_percentage / 100);
+            } elseif ($promotion->discount_amount) {
+                $discount = $promotion->discount_amount;
+            }
+
+            // Lưu mã giảm giá và số tiền giảm vào session
+            session()->put('coupon', [
+                'code' => $promotion->code,
+                'discount' => $discount,
+            ]);
+
+            return back()->with('message', 'Áp dụng mã giảm giá thành công');
+        }
+
+        return back()->with('message', 'Mã giảm giá không hợp lệ');
     }
 }

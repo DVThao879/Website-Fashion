@@ -45,6 +45,7 @@ Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
 Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('cart.add');
 Route::delete('/cart/remove/{id}', [CartController::class, 'removeCart'])->name('cart.remove');
 Route::delete('/cart/clear', [CartController::class, 'clearCart'])->name('cart.clear');
+Route::post('/cart/apply-coupon', [CartController::class, 'applyCoupon'])->name('cart.applyCoupon');
 Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout')->middleware('auth');
 Route::post('/order', [CartController::class, 'placeOrder'])->name('order.place')->middleware('auth');
 Route::get('/thankyou', [CartController::class, 'thankyou'])->name('thankyou')->middleware('auth');

@@ -39,7 +39,6 @@
                         <th>ID</th>
                         <th>Mã code</th>
                         <th>Giảm giá</th>
-                        <th>Số lượng</th>
                         <th>Ngày bắt đầu</th>
                         <th>Ngày kết thúc</th>
                         <th>Trạng thái</th>
@@ -51,7 +50,6 @@
                             <th>ID</th>
                             <th>Mã code</th>
                             <th>Giảm giá</th>
-                            <th>Số lượng</th>
                             <th>Ngày bắt đầu</th>
                             <th>Ngày kết thúc</th>
                             <th>Trạng thái</th>
@@ -70,7 +68,6 @@
                                         {{ number_format($item->discount_amount, 0, ",", ".") }} VND
                                     @endif
                                 </td>
-                                <td>{{ $item->quantity }}</td>
                                 <td>{{ $item->start_date }}</td>
                                 <td>{{ $item->end_date }}</td>
                                 <td>

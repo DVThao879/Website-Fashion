@@ -24,7 +24,6 @@
         <span class="text-danger">Không có!</span>
         @endif
     </li>
-    <li class="mb-2">Số lượng: {{$promotion->quantity}}</li>
     <li class="mb-2">Ngày bắt đầu: {{$promotion->start_date}}</li>
     <li class="mb-2">Ngày kết thúc: {{ $promotion->end_date }}</li>
     <li class="mb-2">Trạng thái: {!! $promotion->is_active ? '<span class="">Hoạt động</span>' : '<span class="">Không hoạt động</span>' !!}</li>

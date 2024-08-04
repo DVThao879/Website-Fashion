@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('code')->unique();
             $table->integer('discount_percentage')->nullable();
             $table->float('discount_amount')->nullable();
-            $table->integer('quantity');
             $table->date('start_date');
             $table->date('end_date');
             $table->boolean('is_active')->default(true);

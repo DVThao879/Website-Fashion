@@ -55,23 +55,6 @@
           </div>
         </div>
         <div class="col-md-6">
-
-          <div class="row mb-5">
-            <div class="col-md-12">
-              <h2 class="h3 mb-3 text-black">Mã giảm giá</h2>
-              <div class="p-3 p-lg-5 border">
-                
-                <label for="c_code" class="text-black mb-3">Enter your coupon code if you have one</label>
-                <div class="input-group w-75">
-                  <input type="text" class="form-control" id="c_code" placeholder="Coupon Code" aria-label="Coupon Code" aria-describedby="button-addon2">
-                  <div class="input-group-append">
-                    <button class="btn btn-primary btn-sm" type="button" id="button-addon2">Apply</button>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
           
           <div class="row mb-5">
             <div class="col-md-12">
@@ -93,9 +76,15 @@
                         <td class="text-black font-weight-bold"><strong>Tổng cộng giỏ hàng</strong></td>
                         <td class="text-black">{{ number_format($totalAmount, 0, ",", ".") }} VND</td>
                     </tr>
+                    @if(isset($discount) && $discount > 0)
+                        <tr>
+                            <td class="text-black font-weight-bold"><strong>Giảm giá</strong></td>
+                            <td class="text-black">-{{ number_format($discount, 0, ",", ".") }} VND</td>
+                        </tr>
+                    @endif
                     <tr>
                         <td class="text-black font-weight-bold"><strong>Tổng đơn hàng</strong></td>
-                        <td class="text-black font-weight-bold"><strong>{{ number_format($totalAmount, 0, ",", ".") }} VND</strong></td>
+                        <td class="text-black font-weight-bold"><strong>{{ number_format($finalTotal, 0, ",", ".") }} VND</strong></td>
                     </tr>
                   </tbody>
                 </table>
@@ -111,6 +100,29 @@
       </div>
     </form>
       <!-- </form> -->
+
+      <div class="row mb-5">
+        <div class="col-md-12">
+          <h2 class="h3 mb-3 text-black">Mã giảm giá</h2>
+          <div class="p-3 p-lg-5 border">
+            <form action="{{ route('cart.applyCoupon') }}" method="post">
+              @csrf
+            <label for="c_code" class="text-black mb-3">Enter your coupon code if you have one</label>
+            <div class="input-group w-75">
+              <input type="text" name="coupon_code" class="form-control">
+              <div class="input-group-append">
+                <button class="btn btn-primary btn-sm" type="submit" id="button-addon2">Apply</button>
+              </div>
+            </div>
+          </form>
+          @if(session('message'))
+            <p class="text-danger">{{session('message')}}</p>
+          @endif
+          </div>
+        </div>
+      </div>
+
+
     </div>
   </div>
 @endsection

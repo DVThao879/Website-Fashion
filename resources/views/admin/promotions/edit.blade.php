@@ -46,10 +46,6 @@ Thêm mã khuyến mại
                             <input type="number" name="discount_amount" id="discount_amount" placeholder="Nhập số tiền giảm..." class="form-control" step="0.01" min="0" value="{{ $promotion->discount_amount }}" required>
                         </div>
                         <div class="mb-3">
-                            <label for="quantity" class="form-label">Số lượng</label>
-                            <input type="number" class="form-control" id="quantity" placeholder="Nhập số lượng..." name="quantity" value="{{ $promotion->quantity }}" required>
-                        </div>
-                        <div class="mb-3">
                             <label for="start_date" class="form-label">Ngày bắt đầu</label>
                             <input type="date" class="form-control" id="start_date" name="start_date" value="{{ $promotion->start_date }}" required>
                             @error('start_date')
